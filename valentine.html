@@ -34,6 +34,8 @@
         <img src="flores.png" alt="Flores" style="max-width: 100%; margin-bottom: 20px;">
         <h1>Gracias por aceptar estar conmigo en esta fecha donde nos acercamos cada vez más, te amo mucho mi princesa y ojalá poder seguir a tu lado aún más 💘</h1>
         <p class="mensaje">Ilusmm</p>
+        <p>Me haces muy feliz y cada momento a tu lado es único, te adoro con todo mi corazón 💕</p>
+        <p class="mensaje">Y con todo lo que siento, siempre seguiré a tu lado para apoyarte y amarte, ¡Feliz San Valentín! 🩷</p>
     </div>
 
     <!-- Música de fondo -->
@@ -43,13 +45,18 @@
     </audio>
 
     <script>
-        // Detener la música cuando se abandona la página
-        window.onbeforeunload = function() {
-            var audio = document.getElementById("backgroundMusic");
-            if (audio) {
+        const audio = document.getElementById('backgroundMusic');
+
+        // Detectar cuando la pestaña pierde o gana el foco (cuando se sale de la página)
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                // Pausar la música cuando se sale de la página
                 audio.pause();
+            } else {
+                // Reanudar la música cuando se regresa a la página
+                audio.play();
             }
-        };
+        });
     </script>
 
 </body>
