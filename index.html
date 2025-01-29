@@ -14,8 +14,12 @@
         }
 
         #mensaje {
-            color: red;
             font-size: 2em;
+            color: white; /* Blanco brillante */
+        }
+
+        #mensaje span {
+            color: red; /* Rojo intenso solo para "Anitaa" */
         }
 
         .opciones {
@@ -57,7 +61,7 @@
     </style>
 </head>
 <body>
-    <div id="mensaje">Hola Anitaa, ¿quieres pasar juntos nuestro primer San Valentín🩷?</div>
+    <div id="mensaje">Hola <span>Anitaa</span>, ¿quieres pasar juntos nuestro primer San Valentín🩷?</div>
 
     <div class="opciones">
         <button class="opcion" onclick="responder('si')">Sí</button>
@@ -70,12 +74,17 @@
     </div>
 
     <script>
+        let mensajeMostrado = 0;  // Variable para saber si se mostró el primer mensaje
+
         function responder(opcion) {
             if (opcion === 'no') {
-                mostrarPopup("No quieres hacerloo");
-                setTimeout(function() {
-                    mostrarPopup("Piénsalo nuevamente🥹🙏");
-                }, 2000);
+                if (mensajeMostrado === 0) {
+                    mostrarPopup("No quieres hacerloo");
+                    mensajeMostrado = 1;
+                    setTimeout(function() {
+                        mostrarPopup("Piénsalo nuevamente🥹🙏");
+                    }, 2000);
+                }
             } else {
                 window.location.href = "valentine.html";
             }
