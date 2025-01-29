@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>San Valentín</title>
+    <title>San Valentín - Entrada</title>
     <style>
         body {
             background-color: black;
@@ -13,95 +13,73 @@
             padding: 50px;
         }
 
-        #mensaje {
-            font-size: 2em;
-            color: white; /* Blanco brillante */
-        }
-
-        #mensaje span {
-            color: red; /* Rojo intenso solo para "Anitaa" */
-        }
-
-        .opciones {
-            margin-top: 20px;
-            display: block; /* Las opciones deben aparecer */
-        }
-
-        .opcion {
-            background-color: white;
-            color: black;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.5em;
-            cursor: pointer;
-            margin: 10px;
-        }
-
-        #mensaje-popup {
+        #mensaje1, #mensaje2 {
+            display: none;
             background-color: rgba(0, 0, 0, 0.8);
             color: white;
             padding: 20px;
             border-radius: 10px;
-            display: none;
-            position: absolute;
-            top: 20%;
+            position: fixed;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
-            width: 70%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            width: 60%;
+            text-align: center;
         }
 
-        #mensaje-popup .cerrar {
+        .cerrar {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 20px;
             cursor: pointer;
-            padding: 5px 10px;
-            background-color: red;
-            color: white;
-            border: none;
-            font-size: 1.2em;
-            margin-top: 10px;
+        }
+
+        #opciones {
+            font-size: 1.5em;
+            margin-top: 30px;
+        }
+
+        .resaltado {
+            color: red;
         }
     </style>
 </head>
 <body>
-    <div id="mensaje">Hola <span>Anitaa</span>, ¿quieres pasar juntos nuestro primer San Valentín🩷?</div>
+    <h1>Hola <span class="resaltado">Anitaa</span>, ¿quieres pasar juntos nuestro primer San Valentín🩷?</h1>
 
-    <div class="opciones">
-        <button class="opcion" onclick="responder('si')">Sí</button>
-        <button class="opcion" onclick="responder('no')">No 😔 (no le des)</button>
+    <div id="opciones">
+        <button onclick="mostrarMensaje(1)">Sí</button>
+        <button onclick="mostrarMensaje(2)">No 😔(no le des)</button>
     </div>
 
-    <div id="mensaje-popup">
-        <p id="texto-popup"></p>
-        <button class="cerrar" onclick="cerrarPopup()">Cerrar</button>
+    <div id="mensaje1">
+        <p>No quieres hacerloo</p>
+        <span class="cerrar" onclick="cerrarMensaje('mensaje1')">X</span>
+    </div>
+
+    <div id="mensaje2">
+        <p>Piénsalo nuevamente🥹🙏</p>
+        <span class="cerrar" onclick="cerrarMensaje('mensaje2')">X</span>
     </div>
 
     <script>
-        let mensajeMostrado = 0;  // Variable para saber si se mostró el primer mensaje
-
-        function responder(opcion) {
-            if (opcion === 'no') {
-                if (mensajeMostrado === 0) {
-                    mostrarPopup("No quieres hacerloo");
-                    mensajeMostrado = 1;
-                    setTimeout(function() {
-                        mostrarPopup("Piénsalo nuevamente🥹🙏");
-                    }, 2000);
-                }
+        function mostrarMensaje(opcion) {
+            if(opcion === 1) {
+                window.location.href = "valentine.html"; // Redirige a la página de San Valentín
             } else {
-                // Si elige "Sí", redirige a la página de flores
-                window.location.href = "valentine.html";
+                document.getElementById('mensaje1').style.display = 'block'; // Muestra el primer mensaje
             }
         }
 
-        function mostrarPopup(texto) {
-            document.getElementById('mensaje-popup').style.display = "block";
-            document.getElementById('texto-popup').textContent = texto;
-        }
-
-        function cerrarPopup() {
-            document.getElementById('mensaje-popup').style.display = "none";
-            if (mensajeMostrado === 1) {
-                // Si se cerró el mensaje después de presionar "No", regresa a la página de inicio
-                window.location.href = "index.html";
+        function cerrarMensaje(id) {
+            document.getElementById(id).style.display = 'none';
+            if(id === 'mensaje1') {
+                // Después de cerrar el primer mensaje, muestra el segundo
+                setTimeout(function() {
+                    document.getElementById('mensaje2').style.display = 'block';
+                }, 500);
             }
         }
     </script>
