@@ -55,9 +55,20 @@
                 opacity: 1;
             }
         }
+
+        /* Opciones para el audio */
+        audio {
+            display: none; /* Lo ocultamos pero sigue reproduciéndose */
+        }
     </style>
 </head>
 <body>
+    <!-- Agregar el audio -->
+    <audio autoplay loop>
+        <source src="cancion.mp3" type="audio/mp3">
+        Tu navegador no soporta el formato de audio.
+    </audio>
+
     <!-- Imagen de flores -->
     <img id="flores" src="flores.png" alt="Flores de San Valentín">
 
