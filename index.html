@@ -3,90 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz San Valentín</title>
-    <link rel="stylesheet" href="style.css">
+    <title>San Valentín</title>
     <style>
         body {
-            background-color: black; /* Fondo negro */
-            color: white; /* Texto blanco */
+            background-color: black;
+            color: white;
             font-family: Arial, sans-serif;
             text-align: center;
-            height: 100vh;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+            padding: 50px;
         }
 
-        h1 {
-            font-size: 24px;
-            margin-bottom: 20px;
+        #mensaje {
+            color: red;
+            font-size: 2em;
         }
 
-        #name {
-            color: #ff0000; /* Rojo brillante */
-            font-weight: bold;
+        .opciones {
+            margin-top: 20px;
         }
 
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            margin: 10px;
-            cursor: pointer;
+        .opcion {
             background-color: white;
             color: black;
             border: none;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            cursor: pointer;
+            margin: 10px;
         }
 
-        .buttons {
-            display: flex;
-            justify-content: center;
+        #mensaje-popup {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+        }
+
+        #mensaje-popup .cerrar {
+            cursor: pointer;
+            padding: 5px 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            font-size: 1.2em;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>Hola <span id="name">Anitaa</span>, ¿quieres pasar juntos nuestro primer San Valentín🩷?</h1>
-    <div class="buttons">
-        <button id="yes">Sí</button>
-        <button id="no">No 😔</button>
+    <div id="mensaje">Hola Anitaa, ¿quieres pasar juntos nuestro primer San Valentín🩷?</div>
+
+    <div class="opciones">
+        <button class="opcion" onclick="responder('si')">Sí</button>
+        <button class="opcion" onclick="responder('no')">No 😔 (no le des)</button>
     </div>
 
-    <!-- Modal (Para "No") -->
-    <div id="modalNo" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>No quieres hacerloo</p>
-            <p>Piénsalo nuevamente🥹🙏</p>
-        </div>
+    <div id="mensaje-popup">
+        <p id="texto-popup"></p>
+        <button class="cerrar" onclick="cerrarPopup()">Cerrar</button>
     </div>
 
     <script>
-        // Variables para botones y modal
-        const yesButton = document.getElementById('yes');
-        const noButton = document.getElementById('no');
-        const modalNo = document.getElementById('modalNo');
-        const closeButton = modalNo.querySelector('.close');
-
-        yesButton.onclick = function() {
-            window.location.href = "valentine.html"; // Redirige a la página de dedicatoria
-        };
-
-        noButton.onclick = function() {
-            modalNo.style.display = "block"; // Muestra el modal
-        };
-
-        closeButton.onclick = function() {
-            modalNo.style.display = "none"; // Cierra el modal
-            window.location.href = "index.html"; // Redirige nuevamente a la página inicial
-        };
-
-        // Si el usuario hace clic fuera del modal, también lo cierra
-        window.onclick = function(event) {
-            if (event.target === modalNo) {
-                modalNo.style.display = "none";
+        function responder(opcion) {
+            if (opcion === 'no') {
+                mostrarPopup("No quieres hacerloo");
+                setTimeout(function() {
+                    mostrarPopup("Piénsalo nuevamente🥹🙏");
+                }, 2000);
+            } else {
+                window.location.href = "valentine.html";
             }
-        };
+        }
+
+        function mostrarPopup(texto) {
+            document.getElementById('mensaje-popup').style.display = "block";
+            document.getElementById('texto-popup').textContent = texto;
+        }
+
+        function cerrarPopup() {
+            document.getElementById('mensaje-popup').style.display = "none";
+            window.location.href = "index.html";
+        }
     </script>
 </body>
 </html>
