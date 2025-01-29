@@ -92,12 +92,12 @@
 
     <!-- Mensajes que aparecen cuando presionas "No" -->
     <div id="mensajeNo" class="mensaje">
-        <div class="cerrar" onclick="cerrarMensaje()">X</div>
+        <div class="cerrar" onclick="cerrarMensaje('mensajeNo')">X</div>
         <p>No quieres hacerloo</p>
     </div>
 
     <div id="mensajePienas" class="mensaje">
-        <div class="cerrar" onclick="cerrarMensaje()">X</div>
+        <div class="cerrar" onclick="cerrarMensaje('mensajePienas')">X</div>
         <p>Piénsalo nuevamente🥹🙏</p>
     </div>
 
@@ -108,9 +108,12 @@
             }
         }
 
-        function cerrarMensaje() {
-            document.getElementById("mensajeNo").style.display = "none";
-            document.getElementById("mensajePienas").style.display = "block"; // Mostramos el siguiente mensaje
+        function cerrarMensaje(mensajeId) {
+            document.getElementById(mensajeId).style.display = "none";
+            // Si es el segundo mensaje, redirigir al inicio después de cerrar el mensaje
+            if (mensajeId === 'mensajePienas') {
+                location.reload(); // Recarga la página para volver al inicio
+            }
         }
     </script>
 
