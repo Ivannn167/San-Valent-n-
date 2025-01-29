@@ -6,75 +6,51 @@
     <title>San Valentín</title>
     <style>
         body {
-            background-color: #f8d7d7; /* Fondo rosado pastel */
-            color: black;
+            background-color: #f8c6d0; /* Fondo rosado pastel */
             font-family: Arial, sans-serif;
             text-align: center;
-            padding: 50px;
+            color: white; /* Texto blanco por defecto */
         }
 
-        #flores {
-            width: 100%;
-            max-width: 500px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            animation: fadein 3s forwards;
-        }
-
-        #mensaje {
-            font-size: 1.5em;
+        h1 {
             color: white;
-            animation: aparecer 2s forwards;
         }
 
-        .brillante {
-            color: yellow; /* Palabras amarillas brillantes */
-            font-weight: bold;
+        .mensaje {
+            color: yellow;
+            font-size: 24px;
+            margin-top: 20px;
         }
 
-        .resaltado {
-            color: #8A2BE2; /* Color morado para palabras resaltadas */
-            font-weight: bold;
-        }
-
-        @keyframes aparecer {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadein {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        /* Opciones para el audio */
-        audio {
-            display: none; /* Lo ocultamos pero sigue reproduciéndose */
+        /* Contenedor de la imagen y el texto */
+        .content {
+            margin-top: 50px;
         }
     </style>
 </head>
 <body>
-    <!-- Agregar el audio -->
-    <audio autoplay loop>
+
+    <div class="content">
+        <img src="flores.png" alt="Flores" style="max-width: 100%; margin-bottom: 20px;">
+        <h1>Gracias por aceptar estar conmigo en esta fecha donde nos acercamos cada vez más, te amo mucho mi princesa y ojalá poder seguir a tu lado aún más 💘</h1>
+        <p class="mensaje">Ilusmm</p>
+    </div>
+
+    <!-- Música de fondo -->
+    <audio id="backgroundMusic" autoplay loop>
         <source src="cancion.mp3" type="audio/mp3">
-        Tu navegador no soporta el formato de audio.
+        Tu navegador no soporta el elemento de audio.
     </audio>
 
-    <!-- Imagen de flores -->
-    <img id="flores" src="flores.png" alt="Flores de San Valentín">
+    <script>
+        // Detener la música cuando se abandona la página
+        window.onbeforeunload = function() {
+            var audio = document.getElementById("backgroundMusic");
+            if (audio) {
+                audio.pause();
+            }
+        };
+    </script>
 
-    <!-- Mensaje -->
-    <div id="mensaje">
-        <p>Gracias por aceptar estar conmigo en esta fecha donde nos acercamos cada vez más. Cada momento que compartimos me hace más feliz y agradecido de tenerte a mi lado. <span class="brillante">Te amo mucho</span>, mi princesa. Espero poder seguir a tu lado aún más, porque mi vida es mucho mejor cuando estás en ella. <br> <span class="resaltado">Ilusmm</span>, siempre y para siempre.</p>
-    </div>
 </body>
 </html>
