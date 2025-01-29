@@ -109,12 +109,27 @@
         }
 
         function cerrarMensaje(mensajeId) {
+            if (mensajeId === 'mensajeNo') {
+                // Cuando se cierra el primer mensaje, mostrar el segundo
+                setTimeout(function() {
+                    document.getElementById("mensajePienas").style.display = "block";
+                }, 500); // Mostrar el segundo mensaje después de 0.5 segundos
+            }
+
             document.getElementById(mensajeId).style.display = "none";
-            // Si es el segundo mensaje, redirigir al inicio después de cerrar el mensaje
+            // Si es el segundo mensaje, redirigir al inicio después de cerrarlo
             if (mensajeId === 'mensajePienas') {
                 location.reload(); // Recarga la página para volver al inicio
             }
         }
+
+        // Para detener la música cuando se sale de la página
+        window.onbeforeunload = function() {
+            var audio = document.getElementById("backgroundMusic");
+            if (audio) {
+                audio.pause();
+            }
+        };
     </script>
 
 </body>
