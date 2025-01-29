@@ -24,6 +24,7 @@
 
         .opciones {
             margin-top: 20px;
+            display: block; /* Las opciones deben aparecer */
         }
 
         .opcion {
@@ -86,6 +87,7 @@
                     }, 2000);
                 }
             } else {
+                // Si elige "Sí", redirige a la página de flores
                 window.location.href = "valentine.html";
             }
         }
@@ -97,7 +99,10 @@
 
         function cerrarPopup() {
             document.getElementById('mensaje-popup').style.display = "none";
-            window.location.href = "index.html";
+            if (mensajeMostrado === 1) {
+                // Si se cerró el mensaje después de presionar "No", regresa a la página de inicio
+                window.location.href = "index.html";
+            }
         }
     </script>
 </body>
