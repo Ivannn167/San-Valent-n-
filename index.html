@@ -6,24 +6,26 @@
     <title>San Valentín</title>
     <style>
         body {
-            background-color: #666666; /* Fondo gris */
+            background-color: #000000; /* Fondo negro */
             font-family: Arial, sans-serif;
             text-align: center;
             color: white;
         }
 
         h1 {
-            color: #FF3333; /* Color rojo brillante */
+            color: #FF3333; /* Color rojo brillante para "Anitaa" */
         }
 
         .opciones {
             margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Espacio entre los botones */
         }
 
         .opciones button {
             font-size: 20px;
             padding: 15px;
-            margin: 10px;
             background-color: transparent;
             border: 2px solid white;
             color: white;
@@ -77,8 +79,8 @@
     <h1>Hola <span style="color: red;">Anitaa</span>, ¿quieres pasar juntos nuestro primer San Valentín🩷?</h1>
 
     <div class="opciones">
-        <button onclick="mostrarMensaje('no')">No 😔(no le des)</button>
-        <button onclick="location.href = 'valentine.html';">Sí</button>
+        <button onclick="location.href = 'valentine.html';">Sí</button> <!-- Botón a la izquierda -->
+        <button onclick="mostrarMensaje('no')">No 😔(no le des)</button> <!-- Botón a la derecha -->
     </div>
 
     <!-- Imagen debajo de las opciones -->
