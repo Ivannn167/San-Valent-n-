@@ -6,22 +6,35 @@
     <title>San Valentín</title>
     <style>
         body {
-            background-color: #f8d7d7; /* Color de fondo rosado pastel */
-            color: black; /* Color del texto en negro */
+            background-color: #f8d7d7; /* Fondo rosado pastel */
+            color: black;
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 50px;
-            position: relative;
         }
 
-        #mensaje-flores {
-            font-size: 2em;
-            display: none;
+        #flores {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            animation: fadein 3s forwards;
+        }
+
+        #mensaje {
+            font-size: 1.5em;
+            color: white;
             animation: aparecer 2s forwards;
         }
 
-        #mensaje-flores .brillante {
-            color: yellow; /* Color amarillo brillante para "te amo mucho" e "ilusmm" */
+        .brillante {
+            color: yellow; /* Palabras amarillas brillantes */
+            font-weight: bold;
+        }
+
+        .resaltado {
+            color: #8A2BE2; /* Color morado para palabras resaltadas */
             font-weight: bold;
         }
 
@@ -34,22 +47,23 @@
             }
         }
 
+        @keyframes fadein {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Imagen de flores -->
+    <img id="flores" src="flores.png" alt="Flores de San Valentín">
 
-    <div id="mensaje-flores">
-        <p>Gracias por aceptar estar conmigo en esta fecha donde nos acercamos cada vez más. Cada momento que compartimos me hace más feliz y agradecido de tenerte a mi lado. <span class="brillante">Te amo mucho</span>, mi princesa. Espero poder seguir a tu lado aún más, porque mi vida es mucho mejor cuando estás en ella. <br> <span class="brillante">Ilusmm</span>, siempre y para siempre.</p>
+    <!-- Mensaje -->
+    <div id="mensaje">
+        <p>Gracias por aceptar estar conmigo en esta fecha donde nos acercamos cada vez más. Cada momento que compartimos me hace más feliz y agradecido de tenerte a mi lado. <span class="brillante">Te amo mucho</span>, mi princesa. Espero poder seguir a tu lado aún más, porque mi vida es mucho mejor cuando estás en ella. <br> <span class="resaltado">Ilusmm</span>, siempre y para siempre.</p>
     </div>
-
-    <script>
-        // Mostrar el mensaje después de un pequeño retraso (1.5 segundos)
-        window.onload = function() {
-            setTimeout(function() {
-                document.getElementById('mensaje-flores').style.display = 'block';
-            }, 1500);
-        }
-    </script>
-
 </body>
 </html>
