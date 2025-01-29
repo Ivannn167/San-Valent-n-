@@ -3,76 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz San Valentín</title>
-    <link rel="stylesheet" href="style.css">
+    <title>San Valentín</title>
     <style>
         body {
-            background-color: #ffe6f2; /* Fondo rosado pastel */
+            background-color: #f8d7d7; /* Color de fondo rosado pastel */
+            color: black; /* Color del texto en negro */
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+            padding: 50px;
+            position: relative;
         }
 
-        h1 {
-            font-size: 24px;
-            color: #ffff00; /* Amarillo brilloso */
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Efecto de resplandor */
-            margin-bottom: 20px;
+        #mensaje-flores {
+            font-size: 2em;
+            display: none;
+            animation: aparecer 2s forwards;
         }
 
-        p {
-            font-size: 18px;
-            color: #ffff00; /* Amarillo brilloso */
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        #mensaje-flores .brillante {
+            color: yellow; /* Color amarillo brillante para "te amo mucho" e "ilusmm" */
+            font-weight: bold;
         }
 
-        .flower-container {
-            opacity: 0;
-            animation: fadeIn 2s forwards; /* Animación de aparición de las flores */
-        }
-
-        @keyframes fadeIn {
-            from {
+        @keyframes aparecer {
+            0% {
                 opacity: 0;
             }
-            to {
+            100% {
                 opacity: 1;
             }
         }
 
-        .text-container {
-            opacity: 0;
-            animation: fadeTextIn 2s 1.5s forwards; /* Aparece después de 1.5 segundos */
-        }
-
-        @keyframes fadeTextIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="flower-container">
-        <img src="flores.png" alt="Flores" width="300px"> <!-- Asegúrate de que la imagen esté en la misma carpeta -->
+
+    <div id="mensaje-flores">
+        <p>Gracias por aceptar estar conmigo en esta fecha donde nos acercamos cada vez más. Cada momento que compartimos me hace más feliz y agradecido de tenerte a mi lado. <span class="brillante">Te amo mucho</span>, mi princesa. Espero poder seguir a tu lado aún más, porque mi vida es mucho mejor cuando estás en ella. <br> <span class="brillante">Ilusmm</span>, siempre y para siempre.</p>
     </div>
 
-    <div class="text-container">
-        <h1>Gracias por aceptar estar conmigo en esta fecha donde nos acercamos cada vez más, te amo mucho mi princesa y ojalá poder seguir a tu lado aún más 💘</h1>
-        <p>Ilusmm</p>
-    </div>
+    <script>
+        // Mostrar el mensaje después de un pequeño retraso (1.5 segundos)
+        window.onload = function() {
+            setTimeout(function() {
+                document.getElementById('mensaje-flores').style.display = 'block';
+            }, 1500);
+        }
+    </script>
 
-    <!-- Música de fondo -->
-    <audio autoplay loop>
-        <source src="cancion.mp3" type="audio/mpeg"> <!-- Asegúrate de que la canción esté en la misma carpeta -->
-    </audio>
 </body>
 </html>
