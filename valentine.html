@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz San Valentín</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #ffe6f2; /* Fondo rosado pastel */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #ffff00; /* Amarillo brilloso */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Efecto de resplandor */
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #ffff00; /* Amarillo brilloso */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .flower-container {
+            opacity: 0;
+            animation: fadeIn 2s forwards; /* Animación de aparición de las flores */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .text-container {
+            opacity: 0;
+            animation: fadeTextIn 2s 1.5s forwards; /* Aparece después de 1.5 segundos */
+        }
+
+        @keyframes fadeTextIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flower-container">
+        <img src="flores.png" alt="Flores" width="300px"> <!-- Asegúrate de que la imagen esté en la misma carpeta -->
+    </div>
+
+    <div class="text-container">
+        <h1>Gracias por aceptar estar conmigo en esta fecha donde nos acercamos cada vez más, te amo mucho mi princesa y ojalá poder seguir a tu lado aún más 💘</h1>
+        <p>Ilusmm</p>
+    </div>
+
+    <!-- Música de fondo -->
+    <audio autoplay loop>
+        <source src="cancion.mp3" type="audio/mpeg"> <!-- Asegúrate de que la canción esté en la misma carpeta -->
+    </audio>
+</body>
+</html>
