@@ -6,75 +6,113 @@
     <title>San Valentín</title>
     <style>
         body {
-            background-color: #f8d7d7; /* Fondo rosado pastel */
-            color: black;
+            background-color: #000000; /* Fondo negro */
             font-family: Arial, sans-serif;
             text-align: center;
-            padding: 50px;
+            color: white; /* Texto blanco por defecto */
         }
 
-        #flores {
-            width: 100%;
-            max-width: 500px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            animation: fadein 3s forwards;
+        h1 {
+            color: white; /* El texto normal será blanco */
         }
 
-        #mensaje {
-            font-size: 1.5em;
+        .anitaa {
+            color: red; /* "Anitaa" en rojo */
+        }
+
+        .opciones {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Espacio entre los botones */
+        }
+
+        .opciones button {
+            font-size: 20px;
+            padding: 15px;
+            background-color: transparent;
+            border: 2px solid white;
             color: white;
-            animation: aparecer 2s forwards;
+            cursor: pointer;
+            border-radius: 5px;
         }
 
-        .brillante {
-            color: yellow; /* Palabras amarillas brillantes */
-            font-weight: bold;
+        .opciones button:hover {
+            background-color: white;
+            color: #333333;
         }
 
-        .resaltado {
-            color: #8A2BE2; /* Color morado para palabras resaltadas */
-            font-weight: bold;
+        /* Imagen centrada */
+        .imagen {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 80%;
+            margin-top: 20px;
         }
 
-        @keyframes aparecer {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
+        /* Estilo de los mensajes que aparecerán al presionar No */
+        .mensaje {
+            background-color: #333333;
+            color: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            display: none;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            text-align: center;
         }
 
-        @keyframes fadein {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        /* Opciones para el audio */
-        audio {
-            display: none; /* Lo ocultamos pero sigue reproduciéndose */
+        /* Estilo para las X de los mensajes */
+        .cerrar {
+            cursor: pointer;
+            font-size: 20px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <!-- Agregar el audio -->
-    <audio autoplay loop>
-        <source src="cancion.mp3" type="audio/mp3">
-        Tu navegador no soporta el formato de audio.
-    </audio>
 
-    <!-- Imagen de flores -->
-    <img id="flores" src="flores.png" alt="Flores de San Valentín">
+    <h1>Hola <span class="anitaa">Anitaa</span>, ¿quieres pasar juntos nuestro primer San Valentín🩷?</h1>
 
-    <!-- Mensaje -->
-    <div id="mensaje">
-        <p>Gracias por aceptar estar conmigo en esta fecha donde nos acercamos cada vez más. Cada momento que compartimos me hace más feliz y agradecido de tenerte a mi lado. <span class="brillante">Te amo mucho</span>, mi princesa. Espero poder seguir a tu lado aún más, porque mi vida es mucho mejor cuando estás en ella. <br> <span class="resaltado">Ilusmm</span>, siempre y para siempre.</p>
+    <div class="opciones">
+        <button onclick="location.href = 'valentine.html';">Sí</button> <!-- Botón a la izquierda -->
+        <button onclick="mostrarMensaje('no')">No 😔(no le des)</button> <!-- Botón a la derecha -->
     </div>
+
+    <!-- Imagen debajo de las opciones -->
+    <img src="imagen2.png" alt="Imagen de entrada" class="imagen">
+
+    <!-- Mensajes que aparecen cuando presionas "No" -->
+    <div id="mensajeNo" class="mensaje">
+        <div class="cerrar" onclick="cerrarMensaje()">X</div>
+        <p>No quieres hacerloo</p>
+    </div>
+
+    <div id="mensajePienas" class="mensaje">
+        <div class="cerrar" onclick="cerrarMensaje()">X</div>
+        <p>Piénsalo nuevamente🥹🙏</p>
+    </div>
+
+    <script>
+        function mostrarMensaje(opcion) {
+            if (opcion === 'no') {
+                document.getElementById("mensajeNo").style.display = "block";
+            }
+        }
+
+        function cerrarMensaje() {
+            document.getElementById("mensajeNo").style.display = "none";
+            document.getElementById("mensajePienas").style.display = "block"; // Mostramos el siguiente mensaje
+        }
+    </script>
+
 </body>
 </html>
