@@ -3,85 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>San Valentín - Entrada</title>
+    <title>San Valentín</title>
     <style>
         body {
-            background-color: black;
-            color: white;
+            background-color: #666666; /* Fondo gris */
             font-family: Arial, sans-serif;
             text-align: center;
-            padding: 50px;
+            color: white;
         }
 
-        #mensaje1, #mensaje2 {
-            display: none;
-            background-color: rgba(0, 0, 0, 0.8);
+        h1 {
+            color: #FF3333; /* Color rojo brillante */
+        }
+
+        .opciones {
+            margin-top: 20px;
+        }
+
+        .opciones button {
+            font-size: 20px;
+            padding: 15px;
+            margin: 10px;
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .opciones button:hover {
+            background-color: white;
+            color: #333333;
+        }
+
+        /* Imagen centrada */
+        .imagen {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 80%;
+            margin-top: 20px;
+        }
+
+        /* Estilo de los mensajes que aparecerán al presionar No */
+        .mensaje {
+            background-color: #333333;
             color: white;
             padding: 20px;
+            margin-top: 20px;
             border-radius: 10px;
-            position: fixed;
-            top: 50%;
+            display: none;
+            position: absolute;
             left: 50%;
+            top: 50%;
             transform: translate(-50%, -50%);
-            z-index: 10;
-            width: 60%;
+            width: 80%;
             text-align: center;
         }
 
+        /* Estilo para las X de los mensajes */
         .cerrar {
-            position: absolute;
-            top: 5px;
-            right: 10px;
-            font-size: 20px;
             cursor: pointer;
-        }
-
-        #opciones {
-            font-size: 1.5em;
-            margin-top: 30px;
-        }
-
-        .resaltado {
-            color: red;
+            font-size: 20px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <h1>Hola <span class="resaltado">Anitaa</span>, ¿quieres pasar juntos nuestro primer San Valentín🩷?</h1>
 
-    <div id="opciones">
-        <button onclick="mostrarMensaje(1)">Sí</button>
-        <button onclick="mostrarMensaje(2)">No 😔(no le des)</button>
+    <h1>Hola <span style="color: red;">Anitaa</span>, ¿quieres pasar juntos nuestro primer San Valentín🩷?</h1>
+
+    <div class="opciones">
+        <button onclick="mostrarMensaje('no')">No 😔(no le des)</button>
+        <button onclick="location.href = 'valentine.html';">Sí</button>
     </div>
 
-    <div id="mensaje1">
+    <!-- Imagen debajo de las opciones -->
+    <img src="imagen2.png" alt="Imagen de entrada" class="imagen">
+
+    <!-- Mensajes que aparecen cuando presionas "No" -->
+    <div id="mensajeNo" class="mensaje">
+        <div class="cerrar" onclick="cerrarMensaje()">X</div>
         <p>No quieres hacerloo</p>
-        <span class="cerrar" onclick="cerrarMensaje('mensaje1')">X</span>
     </div>
 
-    <div id="mensaje2">
+    <div id="mensajePienas" class="mensaje">
+        <div class="cerrar" onclick="cerrarMensaje()">X</div>
         <p>Piénsalo nuevamente🥹🙏</p>
-        <span class="cerrar" onclick="cerrarMensaje('mensaje2')">X</span>
     </div>
 
     <script>
         function mostrarMensaje(opcion) {
-            if(opcion === 1) {
-                window.location.href = "valentine.html"; // Redirige a la página de San Valentín
-            } else {
-                document.getElementById('mensaje1').style.display = 'block'; // Muestra el primer mensaje
+            if (opcion === 'no') {
+                document.getElementById("mensajeNo").style.display = "block";
             }
         }
 
-        function cerrarMensaje(id) {
-            document.getElementById(id).style.display = 'none';
-            if(id === 'mensaje1') {
-                // Después de cerrar el primer mensaje, muestra el segundo
-                setTimeout(function() {
-                    document.getElementById('mensaje2').style.display = 'block';
-                }, 500);
-            }
+        function cerrarMensaje() {
+            document.getElementById("mensajeNo").style.display = "none";
+            document.getElementById("mensajePienas").style.display = "block"; // Mostramos el siguiente mensaje
         }
     </script>
+
 </body>
 </html>
