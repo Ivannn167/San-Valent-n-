@@ -10,6 +10,7 @@
             font-family: Arial, sans-serif;
             text-align: center;
             color: Black; /* texto negro por defecto */
+            position: relative; /* Necesario para el posicionamiento absoluto de los destellos */
         }
 
         h1 {
@@ -77,13 +78,14 @@
             color: white;
         }
 
-        /* Animación de destellos alrededor del girasol */
+        /* Animación de balanceo del girasol */
         .girasol {
             display: block;
             margin: 80px auto;
             width: 235px;
             animation: balanceo 2s infinite alternate ease-in-out;
             cursor: pointer;
+            position: relative;
         }
 
         @keyframes balanceo {
@@ -91,28 +93,61 @@
             100% { transform: translateX(10px); }
         }
 
-        /* Efecto de destellos */
+        /* Estilo y animación de los destellos */
         .destello {
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 300px;
-            height: 300px;
-            margin-top: -150px;
-            margin-left: -150px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 255, 0, 0.8), rgba(255, 255, 0, 0));
-            animation: brillo 1s infinite;
+            width: 0;
+            height: 0;
+            background: transparent;
             z-index: 1;
+            transform-origin: center;
+            pointer-events: none;
+            animation: destellos 1s ease-out;
             opacity: 0;
         }
 
-        @keyframes brillo {
-            0% { opacity: 0; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(0.8); }
+        /* Animación de los destellos (varias líneas finas) */
+        @keyframes destellos {
+            0% {
+                width: 0;
+                height: 0;
+                transform: scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                width: 100px;
+                height: 2px;
+                transform: scale(1) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                width: 0;
+                height: 0;
+                transform: scale(0) rotate(360deg);
+                opacity: 0;
+            }
         }
 
+        /* Diferentes direcciones de destellos */
+        .destello:nth-child(1) { animation-delay: 0s; }
+        .destello:nth-child(2) { animation-delay: 0.1s; }
+        .destello:nth-child(3) { animation-delay: 0.2s; }
+        .destello:nth-child(4) { animation-delay: 0.3s; }
+        .destello:nth-child(5) { animation-delay: 0.4s; }
+        .destello:nth-child(6) { animation-delay: 0.5s; }
+        .destello:nth-child(7) { animation-delay: 0.6s; }
+        .destello:nth-child(8) { animation-delay: 0.7s; }
+
+        /* Estilo del texto "Creado por" */
+        .creditos {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 18px;
+            color: #6f4f1f; /* Color café claro */
+        }
     </style>
 </head>
 <body>
@@ -138,6 +173,9 @@
         <p>Piénsalo nuevamente🙏</p>
     </div>
 
+    <!-- Créditos en la parte inferior izquierda -->
+    <div class="creditos">Creado por: Ivann 🌟</div>
+
     <script>
         function mostrarMensaje(opcion) {
             if (opcion === 'no') {
@@ -161,17 +199,23 @@
         }
 
         function activarDestellos() {
-            // Crear el elemento de destellos
-            var destello = document.createElement("div");
-            destello.classList.add("destello");
+            // Crear múltiples destellos (líneas finas)
+            for (let i = 0; i < 8; i++) {
+                var destello = document.createElement("div");
+                destello.classList.add("destello");
 
-            // Añadir el destello al cuerpo de la página
-            document.body.appendChild(destello);
+                // Añadir un pequeño ángulo aleatorio para variar la dirección
+                const angle = Math.random() * 360; // Ángulo aleatorio entre 0 y 360
+                destello.style.transform = `rotate(${angle}deg)`;
 
-            // Eliminar el destello después de la animación
-            setTimeout(function() {
-                destello.remove();
-            }, 1000); // Después de 1 segundo se elimina
+                // Añadir el destello al cuerpo de la página
+                document.body.appendChild(destello);
+
+                // Eliminar el destello después de la animación
+                setTimeout(function() {
+                    destello.remove();
+                }, 1000); // Después de 1 segundo se elimina
+            }
         }
     </script>
 
