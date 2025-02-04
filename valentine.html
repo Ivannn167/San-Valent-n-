@@ -7,22 +7,24 @@
     <style>
         body {
             background-color: #f8c6d0; /* Fondo rosado pastel */
-            font-family: Arial, sans-serif;
+            font-family: 'Georgia', serif; /* Fuente con estilo de carta */
             text-align: center;
             color: white; /* Texto blanco por defecto */
+            padding: 20px;
         }
 
-        h1 {
-            color: white;
+        .resaltado {
+            color: yellow; /* Palabras resaltadas en amarillo */
+            font-weight: bold;
         }
 
-        .mensaje {
+        .mensaje-final {
             color: yellow;
+            font-style: italic;
             font-size: 24px;
             margin-top: 20px;
         }
 
-        /* Contenedor de la imagen y el texto */
         .content {
             margin-top: 50px;
         }
@@ -32,10 +34,14 @@
 
     <div class="content">
         <img src="flores.png" alt="Flores" style="max-width: 100%; margin-bottom: 20px;">
-        <h1>Gracias por aceptar estar conmigo en esta fecha donde nos acercamos cada vez más, te amo mucho mi princesa y ojalá poder seguir a tu lado aún más 💘</h1>
-        <p class="mensaje">Ilusmm</p>
-        <p>Me haces muy feliz y cada momento a tu lado es único, te adoro con todo mi corazón 💕</p>
-        <p class="mensaje">Y con todo lo que siento, siempre seguiré a tu lado para apoyarte y amarte, ¡Feliz San Valentín! 🩷</p>
+        <p>
+            Gracias por aceptar estar conmigo en esta fecha donde nos acercamos cada vez más, 
+            <span class="resaltado">te amo mucho</span> mi princesa y ojalá poder seguir a tu lado aún más. 
+            Me haces muy feliz y cada momento a tu lado es único, te adoro con todo mi corazón. 
+            <span class="resaltado">Ilusmm</span>, siempre seguiré a tu lado para apoyarte y amarte. 
+            ¡<span class="resaltado">Feliz San Valentín</span>! 💘
+        </p>
+        <p class="mensaje-final">Ilusmm, ¡Feliz San Valentín! 💕</p>
     </div>
 
     <!-- Música de fondo -->
@@ -47,14 +53,12 @@
     <script>
         const audio = document.getElementById('backgroundMusic');
 
-        // Detectar cuando la pestaña pierde o gana el foco (cuando se sale de la página)
+        // Detectar cuando la pestaña pierde o gana el foco
         document.addEventListener('visibilitychange', function() {
             if (document.hidden) {
-                // Pausar la música cuando se sale de la página
-                audio.pause();
+                audio.pause(); // Pausar la música si se cambia de pestaña
             } else {
-                // Reanudar la música cuando se regresa a la página
-                audio.play();
+                audio.play(); // Reanudar la música al volver
             }
         });
     </script>
