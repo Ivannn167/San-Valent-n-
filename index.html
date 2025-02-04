@@ -6,7 +6,7 @@
     <title>San Valentín</title>
     <style>
         body {
-            background-color: #FFDFC4; /* Fondo piel*/
+            background-color: #FFDFC4; /* Fondo piel */
             font-family: Arial, sans-serif;
             text-align: center;
             color: Black; /* texto negro por defecto */
@@ -76,11 +76,48 @@
             right: 10px;
             color: white;
         }
+
+        /* Animación de destellos alrededor del girasol */
+        .girasol {
+            display: block;
+            margin: 80px auto;
+            width: 235px;
+            animation: balanceo 2s infinite alternate ease-in-out;
+            cursor: pointer;
+        }
+
+        @keyframes balanceo {
+            0% { transform: translateX(-10px); }
+            100% { transform: translateX(10px); }
+        }
+
+        /* Efecto de destellos */
+        .destello {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            margin-top: -150px;
+            margin-left: -150px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 0, 0.8), rgba(255, 255, 0, 0));
+            animation: brillo 1s infinite;
+            z-index: 1;
+            opacity: 0;
+        }
+
+        @keyframes brillo {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.8); }
+        }
+
     </style>
 </head>
 <body>
 
-    <h1>Hola <span class="anitaa">Anitaa</span>, ¿quieres pasar juntos nuestro primer San Valentín   🌻🩷?</h1>
+    <h1>Hola <span class="anitaa">Anitaa</span>, ¿quieres pasar juntos nuestro primer San Valentín 🌻🩷?</h1>
 
     <div class="opciones">
         <button onclick="location.href = 'valentine.html';">Sí</button> <!-- Botón a la izquierda -->
@@ -88,23 +125,8 @@
     </div>
 
     <!-- Imagen debajo de las opciones -->
-<img src="imagen2.png" alt="Girasol en maceta" class="girasol">
+    <img src="imagen2.png" alt="Girasol en maceta" class="girasol" onclick="activarDestellos()">
 
-<style>
-    .girasol {
-        display: block;
-        margin: 80px auto;
-        width:235px;
-        animation: balanceo 2s infinite alternate ease-in-out;
-    }
-
-    @keyframes balanceo {
-        0% { transform: translateX(-10px); }
-        100% { transform: translateX(10px); }
-    }
-</style>
-
-    
     <!-- Mensajes que aparecen cuando presionas "No" -->
     <div id="mensajeNo" class="mensaje">
         <div class="cerrar" onclick="cerrarMensaje('mensajeNo')">X</div>
@@ -138,13 +160,19 @@
             }
         }
 
-        // Para detener la música cuando se sale de la página
-        window.onbeforeunload = function() {
-            var audio = document.getElementById("backgroundMusic");
-            if (audio) {
-                audio.pause();
-            }
-        };
+        function activarDestellos() {
+            // Crear el elemento de destellos
+            var destello = document.createElement("div");
+            destello.classList.add("destello");
+
+            // Añadir el destello al cuerpo de la página
+            document.body.appendChild(destello);
+
+            // Eliminar el destello después de la animación
+            setTimeout(function() {
+                destello.remove();
+            }, 1000); // Después de 1 segundo se elimina
+        }
     </script>
 
 </body>
