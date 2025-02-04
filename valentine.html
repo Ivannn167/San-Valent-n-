@@ -5,28 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>San Valentín</title>
     <style>
+        /* Fondo con efecto de destellos */
         body {
             background-color: #f8c6d0; /* Fondo rosado pastel */
-            font-family: 'Times New Roman', serif;
+            background-image: radial-gradient(rgba(255,255,255,0.4) 10%, transparent 20%);
+            background-size: 150px 150px;
+            background-position: 0 0, 75px 75px;
+            animation: brillar 3s infinite alternate;
+            font-family: Arial, sans-serif;
             text-align: center;
-            color: white; /* Texto principal en blanco */
+            color: white;
         }
 
+        @keyframes brillar {
+            from { background-position: 0 0, 75px 75px; }
+            to { background-position: 75px 75px, 150px 150px; }
+        }
+
+        /* Estilo del mensaje */
         p {
             font-size: 22px;
             line-height: 1.6;
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombras para mejorar la legibilidad */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 2s ease-in-out;
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Resaltado en amarillo */
         .resaltado {
-            color: yellow; /* Palabras destacadas en amarillo */
+            color: yellow;
+            font-weight: bold;
         }
 
+        /* Última frase en estilo carta */
         .final {
-            font-size: 26px;
+            font-size: 24px;
             font-style: italic;
-            color: yellow; /* Último mensaje completamente en amarillo */
+            color: yellow;
+        }
+
+        /* Corazón latiendo */
+        .heart {
+            font-size: 40px;
+            animation: latido 1.5s infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes latido {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* Botón de mensaje interactivo */
+        .boton-amor {
+            background-color: #ff69b4;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .boton-amor:hover {
+            transform: scale(1.1);
+        }
+
+        .boton-amor:active {
+            transform: scale(0.9);
+        }
+
+        #mensaje-oculto {
+            font-size: 22px;
+            color: yellow;
+            margin-top: 15px;
+            display: none;
+            animation: fadeIn 1s ease-in-out;
         }
     </style>
 </head>
@@ -36,14 +98,44 @@
         <img src="flores.png" alt="Flores" style="max-width: 100%; margin-bottom: 20px;">
         <p>
             Gracias por aceptar estar conmigo en esta fecha donde nos acercamos cada vez más, 
-            <span class="resaltado">te amo mucho</span> mi princesa y ojalá poder seguir a tu lado aún más.
-            Me haces muy feliz y cada momento a tu lado es único, te adoro con todo mi corazón.
-            <span class="resaltado">Ilusmm</span>, siempre seguiré a tu lado para apoyarte y amarte. 
+            <span class="resaltado">te amo mucho</span> mi princesa y ojalá poder seguir a tu lado aún más.  
+            Me haces muy feliz y cada momento a tu lado es único, te adoro con todo mi corazón.  
+            <span class="resaltado">Ilusmm</span>, siempre seguiré a tu lado para apoyarte y amarte.  
             <span class="resaltado">¡Feliz San Valentín!</span> 💘
         </p>
 
-        <p class="final">Te adoro muchísimo, ¡Feliz 14 de Febrero💫💘!</p>
+        <p class="final">Te adoro muchísimo, ¡Feliz 14 de Febrero! 💫💘</p>
+
+        <!-- Corazón latiendo -->
+        <div class="heart">💖</div>
+
+        <!-- Botón interactivo -->
+        <button class="boton-amor" onclick="mostrarMensaje()">💌 Toca aquí 💌</button>
+        <p id="mensaje-oculto">Eres lo mejor que me ha pasado, mi amor 💕</p>
     </div>
+
+    <!-- Música de fondo -->
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="cancion.mp3" type="audio/mp3">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <script>
+        function mostrarMensaje() {
+            document.getElementById('mensaje-oculto').style.display = 'block';
+        }
+
+        const audio = document.getElementById('backgroundMusic');
+
+        // Detectar cuando la pestaña pierde o gana el foco (cuando se sale de la página)
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                audio.pause();
+            } else {
+                audio.play();
+            }
+        });
+    </script>
 
 </body>
 </html>
