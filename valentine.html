@@ -97,29 +97,10 @@
             animation: fadeIn 1s ease-in-out;
         }
 
-        /* Mensaje flotante */
-        .mensaje-flotante {
-            position: absolute;
-            top: 20%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 20px;
-            color: white;
-            background: rgba(255, 105, 180, 0.8);
-            padding: 10px 20px;
-            border-radius: 15px;
-            opacity: 1;
-            animation: desaparecer 5s ease-in-out forwards;
-        }
-
-        @keyframes desaparecer {
-            0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-            100% { opacity: 0; transform: translate(-50%, -70%) scale(1.2); }
-        }
-
         /* Efecto de desvanecimiento en la imagen */
         img {
             animation: fadeIn 2s ease-in-out;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -129,9 +110,6 @@
         <!-- Imagen de flores con desvanecimiento -->
         <img src="flores.png" alt="Flores" style="max-width: 100%; margin-bottom: 20px;">
         
-        <!-- Mensaje flotante -->
-        <div class="mensaje-flotante">Eres mi persona favorita 💖</div>
-
         <p>
             Gracias por aceptar estar conmigo en esta fecha donde nos acercamos cada vez más, 
             <span class="resaltado">te amo mucho</span> mi princesa y ojalá poder seguir a tu lado aún más.  
