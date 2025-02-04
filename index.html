@@ -88,8 +88,23 @@
     </div>
 
     <!-- Imagen debajo de las opciones -->
-    <img src="imagen2.png" alt="Imagen de entrada" class="imagen">
+<img src="imagen2.png" alt="Girasol en maceta" class="girasol">
 
+<style>
+    .girasol {
+        display: block;
+        margin: 20px auto;
+        width: 150px;
+        animation: balanceo 2s infinite alternate ease-in-out;
+    }
+
+    @keyframes balanceo {
+        0% { transform: translateX(-10px); }
+        100% { transform: translateX(10px); }
+    }
+</style>
+
+    
     <!-- Mensajes que aparecen cuando presionas "No" -->
     <div id="mensajeNo" class="mensaje">
         <div class="cerrar" onclick="cerrarMensaje('mensajeNo')">X</div>
