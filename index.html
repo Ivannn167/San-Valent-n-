@@ -11,6 +11,7 @@
             text-align: center;
             color: Black; /* texto negro por defecto */
             position: relative; /* Necesario para el posicionamiento absoluto de los destellos */
+            height: 100vh; /* Aseguramos que el cuerpo ocupe toda la altura de la pantalla */
         }
 
         h1 {
@@ -106,6 +107,7 @@
             pointer-events: none;
             animation: destellos 1s ease-out;
             opacity: 0;
+            border: 2px solid gold; /* Línea dorada */
         }
 
         /* Animación de los destellos (varias líneas finas) */
@@ -117,7 +119,7 @@
                 opacity: 0;
             }
             50% {
-                width: 100px;
+                width: 80px;
                 height: 2px;
                 transform: scale(1) rotate(45deg);
                 opacity: 1;
@@ -143,9 +145,9 @@
         /* Estilo del texto "Creado por" */
         .creditos {
             position: absolute;
-            bottom: 20px;
-            left: 20px;
-            font-size: 18px;
+            bottom: 30px;
+            left: 30px;
+            font-size: 16px;
             color: #6f4f1f; /* Color café claro */
         }
     </style>
