@@ -105,42 +105,52 @@
             z-index: 1;
             transform-origin: center;
             pointer-events: none;
-            animation: destellos 1s ease-out;
+            animation: destellos 1s ease-out forwards;
             opacity: 0;
             border: 2px solid gold; /* Línea dorada */
         }
 
-        /* Animación de los destellos (varias líneas finas) */
+        /* Animación de los destellos */
         @keyframes destellos {
             0% {
                 width: 0;
                 height: 0;
                 transform: scale(0) rotate(0deg);
-                opacity: 0;
-            }
-            50% {
-                width: 80px;
-                height: 2px;
-                transform: scale(1) rotate(45deg);
                 opacity: 1;
             }
             100% {
-                width: 0;
-                height: 0;
-                transform: scale(0) rotate(360deg);
+                width: 150px; /* Distancia de llegada */
+                height: 2px;
+                transform: scale(1) rotate(0deg);
                 opacity: 0;
             }
         }
 
         /* Diferentes direcciones de destellos */
-        .destello:nth-child(1) { animation-delay: 0s; }
-        .destello:nth-child(2) { animation-delay: 0.1s; }
-        .destello:nth-child(3) { animation-delay: 0.2s; }
-        .destello:nth-child(4) { animation-delay: 0.3s; }
-        .destello:nth-child(5) { animation-delay: 0.4s; }
-        .destello:nth-child(6) { animation-delay: 0.5s; }
-        .destello:nth-child(7) { animation-delay: 0.6s; }
-        .destello:nth-child(8) { animation-delay: 0.7s; }
+        .destello:nth-child(1) {
+            transform: rotate(0deg);
+        }
+        .destello:nth-child(2) {
+            transform: rotate(45deg);
+        }
+        .destello:nth-child(3) {
+            transform: rotate(90deg);
+        }
+        .destello:nth-child(4) {
+            transform: rotate(135deg);
+        }
+        .destello:nth-child(5) {
+            transform: rotate(180deg);
+        }
+        .destello:nth-child(6) {
+            transform: rotate(225deg);
+        }
+        .destello:nth-child(7) {
+            transform: rotate(270deg);
+        }
+        .destello:nth-child(8) {
+            transform: rotate(315deg);
+        }
 
         /* Estilo del texto "Creado por" */
         .creditos {
@@ -149,6 +159,7 @@
             left: 30px;
             font-size: 16px;
             color: #6f4f1f; /* Color café claro */
+            transform: translateY(-35px); /* Subir el texto 35px */
         }
     </style>
 </head>
@@ -201,14 +212,10 @@
         }
 
         function activarDestellos() {
-            // Crear múltiples destellos (líneas finas)
+            // Crear múltiples destellos (líneas doradas)
             for (let i = 0; i < 8; i++) {
                 var destello = document.createElement("div");
                 destello.classList.add("destello");
-
-                // Añadir un pequeño ángulo aleatorio para variar la dirección
-                const angle = Math.random() * 360; // Ángulo aleatorio entre 0 y 360
-                destello.style.transform = `rotate(${angle}deg)`;
 
                 // Añadir el destello al cuerpo de la página
                 document.body.appendChild(destello);
