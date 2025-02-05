@@ -10,8 +10,6 @@
             font-family: Arial, sans-serif;
             text-align: center;
             color: Black; /* texto negro por defecto */
-            position: relative; /* Necesario para el posicionamiento absoluto de los destellos */
-            height: 100vh; /* Aseguramos que el cuerpo ocupe toda la altura de la pantalla */
         }
 
         h1 {
@@ -53,6 +51,45 @@
             margin-top: 20px;
         }
 
+        /* Estilo para las burbujas de diálogo */
+        .burbuja {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #FFEC99; /* Color dorado claro */
+            color: #000000;
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            display: none;
+            animation: burbujaAnimacion 2s ease-in-out forwards;
+        }
+
+        /* Animación de la burbuja */
+        @keyframes burbujaAnimacion {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* Estilo de la flecha de la burbuja */
+        .flecha {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #FFEC99;
+        }
+
         /* Estilo de los mensajes que aparecerán al presionar No */
         .mensaje {
             background-color: #A18262;
@@ -79,87 +116,15 @@
             color: white;
         }
 
-        /* Animación de balanceo del girasol */
-        .girasol {
-            display: block;
-            margin: 80px auto;
-            width: 235px;
-            animation: balanceo 2s infinite alternate ease-in-out;
-            cursor: pointer;
-            position: relative;
-        }
-
-        @keyframes balanceo {
-            0% { transform: translateX(-10px); }
-            100% { transform: translateX(10px); }
-        }
-
-        /* Estilo y animación de los destellos */
-        .destello {
+        /* Texto pequeño con el creador */
+        #creador {
+            font-size: 14px;
+            color: #6B4F31;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: transparent;
-            z-index: 1;
-            transform-origin: center;
-            pointer-events: none;
-            animation: destellos 1s ease-out forwards;
-            opacity: 0;
-            border: 2px solid gold; /* Línea dorada */
-        }
-
-        /* Animación de los destellos */
-        @keyframes destellos {
-            0% {
-                width: 0;
-                height: 0;
-                transform: scale(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                width: 150px; /* Distancia de llegada */
-                height: 2px;
-                transform: scale(1) rotate(0deg);
-                opacity: 0;
-            }
-        }
-
-        /* Diferentes direcciones de destellos */
-        .destello:nth-child(1) {
-            transform: rotate(0deg);
-        }
-        .destello:nth-child(2) {
-            transform: rotate(45deg);
-        }
-        .destello:nth-child(3) {
-            transform: rotate(90deg);
-        }
-        .destello:nth-child(4) {
-            transform: rotate(135deg);
-        }
-        .destello:nth-child(5) {
-            transform: rotate(180deg);
-        }
-        .destello:nth-child(6) {
-            transform: rotate(225deg);
-        }
-        .destello:nth-child(7) {
-            transform: rotate(270deg);
-        }
-        .destello:nth-child(8) {
-            transform: rotate(315deg);
-        }
-
-        /* Estilo del texto "Creado por" */
-        .creditos {
-            position: absolute;
-            bottom: 30px;
-            left: 30px;
-            font-size: 16px;
-            color: #6f4f1f; /* Color café claro */
-            transform: translateY(-35px); /* Subir el texto 35px */
+            bottom: 20px;
+            left: 20px;
+            font-family: Arial, sans-serif;
+            margin-bottom: 26px; /* Subí 6px respecto al código anterior */
         }
     </style>
 </head>
@@ -168,12 +133,18 @@
     <h1>Hola <span class="anitaa">Anitaa</span>, ¿quieres pasar juntos nuestro primer San Valentín 🌻🩷?</h1>
 
     <div class="opciones">
-        <button onclick="location.href = 'valentine.html';">Sí</button> <!-- Botón a la izquierda -->
-        <button onclick="mostrarMensaje('no')">No 😔(no le des)</button> <!-- Botón a la derecha -->
+        <button onclick="location.href = 'valentine.html';">Sí</button>
+        <button onclick="mostrarMensaje('no')">No 😔(no le des)</button>
     </div>
 
-    <!-- Imagen debajo de las opciones -->
-    <img src="imagen2.png" alt="Girasol en maceta" class="girasol" onclick="activarDestellos()">
+    <!-- Imagen del girasol -->
+    <img src="imagen2.png" alt="Girasol en maceta" class="girasol" onclick="mostrarBurbuja()">
+
+    <!-- Burbuja de diálogo del girasol -->
+    <div id="burbuja" class="burbuja">
+        ¡Más brillante que un mismo girasol✨🔆!
+        <div class="flecha"></div>
+    </div>
 
     <!-- Mensajes que aparecen cuando presionas "No" -->
     <div id="mensajeNo" class="mensaje">
@@ -186,44 +157,36 @@
         <p>Piénsalo nuevamente🙏</p>
     </div>
 
-    <!-- Créditos en la parte inferior izquierda -->
-    <div class="creditos">Creado por: Ivann 🌟</div>
+    <!-- Texto del creador -->
+    <div id="creador">Creado por: Ivann 🌟</div>
 
     <script>
+        // Función para mostrar la burbuja de diálogo del girasol
+        function mostrarBurbuja() {
+            document.getElementById('burbuja').style.display = 'block';
+            // Desaparece después de 3 segundos
+            setTimeout(function() {
+                document.getElementById('burbuja').style.display = 'none';
+            }, 3000);
+        }
+
+        // Función para mostrar los mensajes de "No"
         function mostrarMensaje(opcion) {
             if (opcion === 'no') {
                 document.getElementById("mensajeNo").style.display = "block";
             }
         }
 
+        // Función para cerrar los mensajes
         function cerrarMensaje(mensajeId) {
+            document.getElementById(mensajeId).style.display = "none";
             if (mensajeId === 'mensajeNo') {
-                // Cuando se cierra el primer mensaje, mostrar el segundo
                 setTimeout(function() {
                     document.getElementById("mensajePienas").style.display = "block";
-                }, 500); // Mostrar el segundo mensaje después de 0.5 segundos
+                }, 500);
             }
-
-            document.getElementById(mensajeId).style.display = "none";
-            // Si es el segundo mensaje, redirigir al inicio después de cerrarlo
             if (mensajeId === 'mensajePienas') {
                 location.reload(); // Recarga la página para volver al inicio
-            }
-        }
-
-        function activarDestellos() {
-            // Crear múltiples destellos (líneas doradas)
-            for (let i = 0; i < 8; i++) {
-                var destello = document.createElement("div");
-                destello.classList.add("destello");
-
-                // Añadir el destello al cuerpo de la página
-                document.body.appendChild(destello);
-
-                // Eliminar el destello después de la animación
-                setTimeout(function() {
-                    destello.remove();
-                }, 1000); // Después de 1 segundo se elimina
             }
         }
     </script>
