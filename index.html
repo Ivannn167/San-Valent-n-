@@ -55,8 +55,8 @@
         .burbuja {
             position: absolute;
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            left: 80%; /* Ubicamos la burbuja a la derecha de la imagen */
+            transform: translateY(-50%);
             background-color: #FFEC99; /* Color dorado claro */
             color: #000000;
             padding: 15px;
@@ -71,11 +71,11 @@
         @keyframes burbujaAnimacion {
             0% {
                 opacity: 0;
-                transform: translate(-50%, -50%) scale(0.5);
+                transform: translateY(-50%) scale(0.5);
             }
             100% {
                 opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
+                transform: translateY(-50%) scale(1);
             }
         }
 
@@ -126,6 +126,16 @@
             font-family: Arial, sans-serif;
             margin-bottom: 26px; /* Subí 6px respecto al código anterior */
         }
+
+        /* Imagen del girasol con tamaño original restaurado */
+        .girasol {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 235px; /* Tamaño original de la imagen del girasol */
+            margin-top: 20px;
+            cursor: pointer; /* Para hacer clic en la imagen */
+        }
     </style>
 </head>
 <body>
@@ -137,7 +147,7 @@
         <button onclick="mostrarMensaje('no')">No 😔(no le des)</button>
     </div>
 
-    <!-- Imagen del girasol -->
+    <!-- Imagen del girasol (con clic para mostrar la burbuja) -->
     <img src="imagen2.png" alt="Girasol en maceta" class="girasol" onclick="mostrarBurbuja()">
 
     <!-- Burbuja de diálogo del girasol -->
@@ -164,10 +174,10 @@
         // Función para mostrar la burbuja de diálogo del girasol
         function mostrarBurbuja() {
             document.getElementById('burbuja').style.display = 'block';
-            // Desaparece después de 3 segundos
+            // Desaparece después de 4 segundos
             setTimeout(function() {
                 document.getElementById('burbuja').style.display = 'none';
-            }, 3000);
+            }, 4000);
         }
 
         // Función para mostrar los mensajes de "No"
