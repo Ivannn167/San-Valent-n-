@@ -55,16 +55,18 @@
         .burbuja {
             position: absolute;
             top: 50%;
-            left: 80%; /* Ubicamos la burbuja a la derecha de la imagen */
-            transform: translateY(-50%);
+            left: 50%; /* Ubicamos la burbuja más a la izquierda */
+            transform: translateY(-50%) translateX(-130%); /* Mover más a la izquierda */
             background-color: #FFEC99; /* Color dorado claro */
             color: #000000;
-            padding: 15px;
+            padding: 10px 15px; /* Hacer la burbuja más pequeña */
             border-radius: 15px;
-            font-size: 20px;
+            font-size: 16px; /* Reducir el tamaño del texto */
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
             display: none;
             animation: burbujaAnimacion 2s ease-in-out forwards;
+            width: auto;
+            max-width: 200px; /* Ancho máximo */
         }
 
         /* Animación de la burbuja */
